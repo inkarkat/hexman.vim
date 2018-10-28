@@ -441,7 +441,7 @@ function s:HEX_XxdConv()
     %!mc vim:xxd
   else
     call s:HEX_XxdFind()
-    exe '%!"' . g:xxdprogram . '"' 
+    exe '%!' . shellescape(g:xxdprogram, 1)
   endif
   if getline(1) =~ "^0000000:"		" only if it worked
     set ft=xxd
@@ -496,9 +496,7 @@ function s:HEX_XxdBack()
     %!mc vim:xxd -r
   else
     call s:HEX_XxdFind()
-    " exe "%!" . g:xxdprogram . " -r"
-    " 07Aug03 Fix
-    exe '%!"' . g:xxdprogram . '" -r'
+    exe '%!' . shellescape(g:xxdprogram, 1) '-r'
   endif
   set ft=
   doautocmd filetypedetect BufReadPost
