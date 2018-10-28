@@ -448,6 +448,7 @@ function s:HEX_XxdConv()
   else
     return |				" can't start xxd
   endif
+  silent %s/\r$//e			" there may be trailing CRs on Windows with :set binary
   "
   " Nice mapping for TAB/Shift-TAB
   " Move from hex to hex field - with TAB / Shift-TAB
